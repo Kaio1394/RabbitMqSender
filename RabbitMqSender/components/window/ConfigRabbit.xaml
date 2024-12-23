@@ -1,0 +1,35 @@
+﻿<Window x:Class="RabbitMqSender.components.window.ConfigRabbit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RabbitMqSender.components.window"
+        mc:Ignorable="d"
+        Title="ConfigRabbit" Height="450" Width="800"
+        ResizeMode="NoResize"
+        Icon="pack://application:,,,/resources/ico/rabbitmq.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" Content="Host" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="0" Grid.Column="1"  x:Name="tbHost" VerticalAlignment="Top" Width="120"/>
+        
+        <Label Grid.Row="1" Grid.Column="0" Content="User" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="1" Grid.Column="1"  x:Name="tbUser" VerticalAlignment="Top" Width="120"/>
+        
+        <Label Grid.Row="2" Grid.Column="0" Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbUPass" VerticalAlignment="Top" Width="120"/>
+        <Button Grid.Column="1" Content="Save" HorizontalAlignment="Right" Grid.Row="3" Click="ButtonSaveConfigRabbit_Click" />
+
+    </Grid>
+</Window>

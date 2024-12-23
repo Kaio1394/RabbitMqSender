@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using RabbitMqSender.components.window;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,16 @@ namespace RabbitMqSender
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static ConfigRabbit? _winconfigRabbit = null;
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void MenuItemSettingRabbit_Click(object sender, RoutedEventArgs e)
+        {
+            _winconfigRabbit = new ConfigRabbit();
+            _winconfigRabbit.ShowDialog();
         }
     }
 }

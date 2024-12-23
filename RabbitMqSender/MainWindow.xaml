@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RabbitMqSender"
         mc:Ignorable="d"
-        Title="Rabbit Sender" Height="450" Width="800">
+        Title="Rabbit Sender" Height="450" Width="800"
+        Icon="pack://application:,,,/resources/ico/rabbitmq.ico">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <MenuItem  Header="New" />
+            <MenuItem  Header="Settings">
+                <MenuItem Header="RabbitMQ" Click="MenuItemSettingRabbit_Click"/>
+            </MenuItem>
+            <MenuItem  Header="History" />
+        </Menu>
+
+
 
     </Grid>
 </Window>
