@@ -20,7 +20,7 @@ namespace RabbitMqSender.core
         private ConnectionFactory _factory;
         private IConnection _iConnection;
         private IModel _iChannel;
-        private List<string> _listQeues = new List<string>();
+        private List<string> _listQueues = new List<string>();
         public RabbitConnection(RabbitConfig config) 
         {
             _factory = new ConnectionFactory()
@@ -29,6 +29,7 @@ namespace RabbitMqSender.core
                 Password = config.Password,
                 VirtualHost = config.VirtualHost,
                 HostName = config.HostName,
+                Port = config.Port
             };
             connectionSuccess = CreateConnection();
             channelSuccess = CreateChannel();
@@ -82,28 +83,39 @@ namespace RabbitMqSender.core
                 body: message.Body
             );
         }
-        public async Task<List<string>> GetQueues(string host, string username, string password)
+        public async Task<List<string>> GetQueues(RabbitConfig config)
         {
             using (HttpClient client = new HttpClient())
             {
-                var byteArray = new System.Text.UTF8Encoding().GetBytes($"{username}:{password}");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
                 try
                 {
-                    HttpResponseMessage response = await client.GetAsync(host);
+                    var uri = $"http://{config.HostName}:15672/api/queues";
+
+                    var credentials = Convert.ToBase64String(Encoding.UTF8.GetBytes($"{config.UserName}:{config.Password}"));
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", credentials);
+                    var teste = $"Authorization: Basic {Convert.ToBase64String(Encoding.UTF8.GetBytes($"{config.UserName}:{config.Password}"))}";
+                    HttpResponseMessage response = await client.GetAsync(uri);
+
                     response.EnsureSuccessStatusCode();
+
                     string responseBody = await response.Content.ReadAsStringAsync();
                     var queues = JsonConvert.DeserializeObject<List<dynamic>>(responseBody);
 
+                    var queueNames = new List<string>();
                     foreach (var queue in queues)
                     {
-                        _listQeues.Add(queue.name);
+                        queueNames.Add(queue.name.ToString());
                     }
-                    return _listQeues;
+
+                    return queueNames;
+                }
+                catch (HttpRequestException ex)
+                {
+                    throw;
                 }
                 catch (Exception ex)
                 {
-                    return new List<string>();
+                    throw;
                 }
             }
         }

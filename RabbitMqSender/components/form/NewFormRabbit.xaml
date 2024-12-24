@@ -6,30 +6,44 @@
              xmlns:local="clr-namespace:RabbitMqSender.components.form"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+    <Border BorderBrush="Gray" BorderThickness="1" Margin="10">
+        <Grid Margin="5, 15, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        
-        <Label Content="Exchange" Grid.Row="0" Grid.Column="0"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Width="120" x:Name="tbExchange"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Label Content="RoutingKey" Grid.Row="1"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Width="120" x:Name="tbRoutingKey"/>
+            <Label Content="Exchange" Grid.Row="0" Grid.Column="0"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Width="120" x:Name="tbExchange"/>
 
-        <Label Content="Body" Grid.Row="2"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Width="120" x:Name="tbBody"/>
+            <Label Content="RoutingKey" Grid.Row="1" Grid.Column="0"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Width="120" x:Name="tbRoutingKey"/>
 
-        <ComboBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120"/>
+            <Label Content="Body" Grid.Row="3" Grid.Column="0"/>
+            <TextBox x:Name="tbBody" Grid.Row="3" Grid.Column="1" Width="120" MinHeight="70" 
+                     AcceptsReturn="True" VerticalScrollBarVisibility="Auto" 
+                     TextWrapping="Wrap" VerticalAlignment="Top"/>
 
+            <Label Grid.Row="2" Grid.Column="0" Content="Queues"/>
 
-    </Grid>
+            <ComboBox x:Name="cbQueues" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"/>
+
+            <Button Margin="5, 0, 0, 0" Name="UpdateButton" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Width="30" Height="30" Click="ButtonLoad_Click" Background="Transparent" BorderBrush="Transparent">
+                <Button.Content>
+                    <Image Source="pack://application:,,,/resources/img/update_btn.png" Width="30" Height="15"/>
+                </Button.Content>
+            </Button>
+
+            <ProgressBar x:Name="progressBar" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Height="15" Visibility="Collapsed" IsIndeterminate="True" Margin="10"/>
+        </Grid>
+    </Border>
 </UserControl>

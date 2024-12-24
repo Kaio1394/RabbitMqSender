@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="resources\ico\rabbitmq.ico" />
+    <None Remove="resources\img\update_btn.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
 
   <ItemGroup>
     <Resource Include="resources\ico\rabbitmq.ico" />
+    <Resource Include="resources\img\update_btn.png" />
   </ItemGroup>
 
   <ItemGroup>

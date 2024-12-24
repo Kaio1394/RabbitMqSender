@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RabbitMqSender.components.window"
         mc:Ignorable="d"
-        Title="Settings" Height="220" Width="350"
+        Title="Settings" Height="250" Width="350"
         ResizeMode="NoResize"
         Icon="pack://application:,,,/resources/ico/rabbitmq.ico">
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -22,26 +22,28 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Host" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBox Grid.Row="0" Grid.Column="1"  x:Name="tbHost" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
 
-        <Label Grid.Row="1" Grid.Column="0" Content="User" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Grid.Column="1"  x:Name="tbUser" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Port" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="1"  x:Name="tbPort" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
 
-        <Label Grid.Row="2" Grid.Column="0" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="tbUPass" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="User" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Grid.Column="1"  x:Name="tbUser" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
 
-        <Label Grid.Row="3" Grid.Column="0" Content="VirtualHost" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="3" Grid.Column="1"  x:Name="tbVirtualHost" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="Password" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="tbUPass" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
 
-        <Button Grid.Column="1" Content="Save" HorizontalAlignment="Right" Grid.Row="4" Click="ButtonSaveConfigRabbit_Click" />
-        <Button Grid.Column="1" Content="Test" HorizontalAlignment="Right" Grid.Row="5" Width="28" Margin="0, 5, 0, 0" Click="Button_Click"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="VirtualHost" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="1"  x:Name="tbVirtualHost" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+
+        <Button Grid.Column="1" Content="Save" HorizontalAlignment="Right" Grid.Row="5" Click="ButtonSaveConfigRabbit_Click" />
+        <Button Grid.Column="1" Content="Test" HorizontalAlignment="Right" Grid.Row="6" Width="28" Margin="0, 5, 0, 0" Click="Button_Click"/>
         <TextBlock Grid.Row="6" Width="150" x:Name="tbkStatusTest" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
         <ProgressBar Grid.Row="7" x:Name="loadingBar" Height="10" Visibility="Collapsed" IsIndeterminate="True" />
-
-
     </Grid>
     
 </Window>

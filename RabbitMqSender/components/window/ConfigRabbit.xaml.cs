@@ -34,6 +34,7 @@ namespace RabbitMqSender.components.window
             tbUser.Text = Properties.Settings.Default.user;
             tbUPass.Text = Properties.Settings.Default.password;
             tbVirtualHost.Text = Properties.Settings.Default.virtualHost;
+            tbPort.Text = $"{Properties.Settings.Default.Port}";
         }
         private void ButtonSaveConfigRabbit_Click(object sender, RoutedEventArgs e)
         {
@@ -41,6 +42,7 @@ namespace RabbitMqSender.components.window
             Properties.Settings.Default.user = tbUser.Text;
             Properties.Settings.Default.password = tbUPass.Text;
             Properties.Settings.Default.virtualHost = tbVirtualHost.Text;
+            Properties.Settings.Default.Port = Convert.ToInt32(tbPort.Text);
             Properties.Settings.Default.Save();
             MessageBox.Show("Settings Save with successfully!", "Information", MessageBoxButton.OK);
         }
@@ -65,7 +67,8 @@ namespace RabbitMqSender.components.window
                 HostName = Properties.Settings.Default.host,
                 Password = Properties.Settings.Default.password,
                 UserName = Properties.Settings.Default.user,
-                VirtualHost = Properties.Settings.Default.virtualHost
+                VirtualHost = Properties.Settings.Default.virtualHost,
+                Port = Properties.Settings.Default.Port
             };
 
             loadingBar.Visibility = Visibility.Visible;
