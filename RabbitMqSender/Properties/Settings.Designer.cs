@@ -58,5 +58,17 @@ namespace RabbitMqSender.Properties {
                 this["password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string virtualHost {
+            get {
+                return ((string)(this["virtualHost"]));
+            }
+            set {
+                this["virtualHost"] = value;
+            }
+        }
     }
 }
