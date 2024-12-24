@@ -52,10 +52,14 @@ namespace RabbitMqSender.components.window
                 !string.IsNullOrEmpty(Properties.Settings.Default.virtualHost);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(!ValidVaraibles())
+            if (!ValidVaraibles())
+            {
                 MessageBox.Show("Some Field is empty!", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             _rabbitConfig = new RabbitConfig()
             {
                 HostName = Properties.Settings.Default.host,
@@ -63,17 +67,40 @@ namespace RabbitMqSender.components.window
                 UserName = Properties.Settings.Default.user,
                 VirtualHost = Properties.Settings.Default.virtualHost
             };
-            _rabbitConnection = new RabbitConnection(_rabbitConfig);
-            if (!_rabbitConnection.ChannelIsOpen())
+
+            loadingBar.Visibility = Visibility.Visible;
+            tbkStatusTest.Text = "Checking connection...";
+            tbkStatusTest.Foreground = new SolidColorBrush(Colors.Gray);
+
+            try
             {
-                tbkStatusTest.Text = "Error connection!";
+                _rabbitConnection = new RabbitConnection(_rabbitConfig);
+                await Task.Run(() =>
+                {
+                    Task.Delay(2000).Wait();
+                });
+
+                if (!_rabbitConnection.ChannelIsOpen())
+                {
+                    tbkStatusTest.Text = "Error connection!";
+                    tbkStatusTest.Foreground = new SolidColorBrush(Colors.Red);
+                }
+                else
+                {
+                    tbkStatusTest.Text = "Successful connection!";
+                    tbkStatusTest.Foreground = new SolidColorBrush(Colors.Green);
+                }
+            }
+            catch (Exception ex)
+            {
+                tbkStatusTest.Text = $"Error: {ex.Message}";
                 tbkStatusTest.Foreground = new SolidColorBrush(Colors.Red);
             }
-            else
+            finally
             {
-                tbkStatusTest.Text = "Successful connection!";
-                tbkStatusTest.Foreground = new SolidColorBrush(Colors.Green);
+                loadingBar.Visibility = Visibility.Collapsed;
             }
         }
+
     }
 }
